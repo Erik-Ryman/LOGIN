@@ -12,11 +12,7 @@ html {
 header {
   height: 100vh;
   position: relative;
-  /* linear-gradient(
-      rgba(34, 34, 34, 0.6),
-      rgba(34, 34, 34, 0.6)
-    ), */
-  background-image: url(./images/hund3.jpg);
+  background-image: url(./images/hund.jpg);
   background-size: cover;
   color: #000;
 }
@@ -24,10 +20,8 @@ header {
 .header-container {
   width: 50%;
   position: absolute;
-  /* in realation to parent height  */
   top: 25%;
   left: 30%;
-  /* In relation to element height  */
   transform: translate(-50%, -50%);
 }
 
@@ -35,20 +29,16 @@ header {
   display: flex;
   flex-direction: column;
   gap: 3rem;
-
-  /* width: 60%; */
 }
 
 h1 {
   font-size: 3.25rem;
-  /* margin-bottom: 2rem; */
   line-height: 1.05;
 }
 
 p {
   font-size: 1.5rem;
   line-height: 1.6;
-  /* margin-bottom: 3rem; */
 }
 
 .btn:link,

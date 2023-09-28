@@ -6,29 +6,32 @@ const closePopup = document.querySelector(".close-popup");
 const popup = document.querySelector(".login-popup-container");
 const overlay = document.querySelector(".overlay");
 const labelText = document.querySelector(".label-text");
-let currentAccount;
 
-const user = [
+const users = [
   {
     name: "Bella",
     password: "qwe123",
   },
 ];
 
-const addClass = function () {
+const addClass = () => {
   popup.classList.add("hidden");
   overlay.classList.add("hidden");
 };
 
-openPopup.addEventListener("click", function () {
+openPopup.addEventListener("click", () => {
   popup.classList.remove("hidden");
   overlay.classList.remove("hidden");
 });
 
 closePopup.addEventListener("click", addClass);
 
-const loggedIn = function (currentAccount) {
-  labelText.textContent = `Välkommen tillbaka ${currentAccount.name}, du är nu inloggad!`;
+////////////////////  LOGIN ///////////////////////////
+
+const loggedIn = () => {
+  labelText.textContent = `Välkommen tillbaka ${localStorage.getItem(
+    "name"
+  )}, du är nu inloggad!`;
   loginUser.classList.add("hidden");
   loginPassword.classList.add("hidden");
   btnLogin.classList.add("hidden");
@@ -40,14 +43,18 @@ const loggedIn = function (currentAccount) {
   });
 };
 
-const login = function (e) {
+////////////////////  INPUT ///////////////////////////
+
+const login = (e) => {
   e.preventDefault();
-  currentAccount = user.find((acc) => acc.name === loginUser.value);
-  if (currentAccount?.password === loginPassword.value) {
-    loggedIn(currentAccount);
-    localStorage.setItem("password", currentAccount.password);
+  const currentAccount = users.find(
+    (acc) =>
+      acc.name === loginUser.value && acc.password === loginPassword.value
+  );
+  if (currentAccount) {
     localStorage.setItem("name", currentAccount.name);
     localStorage.setItem("isLoggedIn", true);
+    loggedIn();
   } else {
     labelText.textContent = `Oj, något gick fel, kontrollera att du angett rätt uppgifter`;
     loginUser.value = loginPassword.value = "";
@@ -57,16 +64,9 @@ const login = function (e) {
 
 btnLogin.addEventListener("click", login);
 
-let checkLogin = function () {
-  if (localStorage.getItem("isLoggedIn")) {
-    let user = [
-      {
-        name: localStorage.getItem("name"),
-        password: localStorage.getItem("password"),
-      },
-    ];
-    loggedIn(user);
-  }
+let checkLogin = () => {
+  if (localStorage.getItem("isLoggedIn"))
+    loggedIn(localStorage.getItem("name"));
 };
 
 checkLogin();
