@@ -2,7 +2,7 @@ const btnLogin = document.querySelector(".btn-login");
 const loginUser = document.querySelector(".login-user");
 const loginPassword = document.querySelector(".login-password");
 const openPopup = document.querySelector(".btn-open-popup");
-const closePopup = document.querySelector(".close-popup");
+const closePopup = document.querySelector(".btn-close-popup");
 const popup = document.querySelector(".login-popup-container");
 const overlay = document.querySelector(".overlay");
 const labelText = document.querySelector(".label-text");
@@ -14,15 +14,15 @@ const users = [
   },
 ];
 
-const addClass = () => {
-  popup.classList.add("hidden");
-  overlay.classList.add("hidden");
-};
-
 openPopup.addEventListener("click", () => {
   popup.classList.remove("hidden");
   overlay.classList.remove("hidden");
 });
+
+const addClass = () => {
+  popup.classList.add("hidden");
+  overlay.classList.add("hidden");
+};
 
 closePopup.addEventListener("click", addClass);
 
@@ -38,8 +38,8 @@ const loggedIn = () => {
   openPopup.textContent = "LOGGA UT";
   openPopup.addEventListener("click", function () {
     addClass();
-    location.reload();
     localStorage.clear();
+    location.reload();
   });
 };
 
