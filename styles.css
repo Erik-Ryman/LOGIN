@@ -111,7 +111,7 @@ form {
   z-index: 5;
 }
 
-.close-popup {
+.btn-close-popup {
   position: absolute;
   top: 1rem;
   right: 2rem;
